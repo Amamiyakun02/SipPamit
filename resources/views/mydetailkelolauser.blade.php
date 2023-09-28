@@ -33,13 +33,14 @@
       </nav>
       <!-- End Navbar -->
 
+<<<<<<< HEAD
       <!-- Modal Tambah Peternak -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Tambah Akun Peternak</h5>
+                        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Edit Akun Peternak</h5>
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -120,6 +121,9 @@
             </div>
         </div>
       <!-- End Modal Tambah Peternak -->
+=======
+      @include('modals/modalEditPeternak')
+>>>>>>> f1b0b60494ab80a4ea3f2819a185b5dec0a800cf
       <!-- Ini Detail Peternak -->
       <div class="container-fluid py-4">
         <div class="card card-frame">
@@ -170,10 +174,14 @@
           <ul class="navbar-nav justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-outline-primary btn-sm mb-0 me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
+              <button type="button" class="btn btn-outline-primary btn-sm mb-0 me-3" data-bs-toggle="modal" data-bs-target="#addGambarModal">+</button>
+              <button type="button" class="btn btn-outline-primary btn-sm mb-0 me-3" data-bs-toggle="modal" data-bs-target="#listModal">list</button>
+          
             </li>
           </ul>
           <!-- End Button Modal -->
+          @include('modals/tambahGaleri')
+          @include('modals/listGaleri')
         </div>
         <div class="card card-frame">
           <div class="card-body">
@@ -188,7 +196,7 @@
                         <li data-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
                         <li data-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
                       </ol>
-                      <div class="carousel-inner">
+                      {{-- <div class="carousel-inner">
                         <div class="carousel-item active">
                           <img class="d-block w-100" src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg" alt="First slide" />
                         </div>
@@ -197,7 +205,14 @@
                         </div>
                         <div class="carousel-item">
                           <img class="d-block w-100" src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-3-min.jpg" alt="Third slide" />
+                        </div> --}}
+                        @foreach ($galeri as $gambar)
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{ asset('storage/' . $gambar->gambar) }}" alt="First slide" />
+                          </div>
                         </div>
+                        @endforeach
                       </div>
                       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -330,10 +345,10 @@
                     <td>
                         <div class="d-flex px-2 py-1">
                             <div>
-                               <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                              <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                             </div>
                             <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-sm">{{ $product->name }}</h6>
+                              <h6 class="mb-0 text-sm">Ginjal Ayam</h6>
                             </div>
                         </div>
                     </td>
@@ -349,15 +364,37 @@
                     <td class="align-middle text-secondary font-weight-bold text-xs">
                         <a href="{{ route('detailpeternak', $product->id) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Detail
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-@endsection
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div>
+                              <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                              <h6 class="mb-0 text-sm">Obat Perangsang</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">Obat</p>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <span class="badge badge-sm bg-gradient-success">20pacs</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <span class="text-secondary text-xs font-weight-bold">Rp 76.000,00</span>
+                        </td>
+                        <td class="align-middle text-secondary font-weight-bold text-xs">
+                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Detail
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                   <nav aria-label="Page navigation" class="mt-4">
                     <ul class="pagination justify-content-end">
                       <li class="page-item disabled">

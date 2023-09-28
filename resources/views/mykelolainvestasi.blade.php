@@ -119,6 +119,7 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach ($invests as $invest)
                 <tr>
                   <td class="align-middle text-center">1.</td>
                   <td>
@@ -127,43 +128,21 @@
                         <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/team-2.jpg" class="avatar avatar-sm me-3" />
                       </div>
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-xs">PT WIBU STRESS SEJAHTERA</h6>
+                        <h6 class="mb-0 text-xs">{{$invest->farm->nama_peternakan}}</h6>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <h6>Rp. 90.000.000</h6>
+                    <h6>{{$invest->funding_target}}</h6>
                   </td>
                   <td class="align-middle text-center text-sm">
-                    <p class="text-xs font-weight-bold mb-0">Bang Rusdi</p>
+                    <p class="text-xs font-weight-bold mb-0">{{$invest->farm->user->name}}</p>
                   </td>
                   <td class="align-middle text-center">
-                    <a href="../pages/mydetailkelolainvestasi.html" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit user"> <i class="material-icons opacity-10">visibility</i> </a>
+                    <a href="{{ route('detailinvestasi', ['id' => $invest->id]) }}" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit user"> <i class="material-icons opacity-10">visibility</i> </a>
                   </td>
                 </tr>
-                <tr>
-                  <td class="align-middle text-center">2.</td>
-                  <td>
-                    <div class="d-flex px-2 py-1">
-                      <div>
-                        <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/team-2.jpg" class="avatar avatar-sm me-3" />
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-xs">PT SUNGUT LELE JOMOK</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <h6>Rp. 120.000.000</h6>
-                  </td>
-                  <td class="align-middle text-center text-sm">
-                    <p class="text-xs font-weight-bold mb-0">Pak Ambatukam</p>
-                  </td>
-                  <td class="align-middle text-center">
-                    <a href="../pages/mydetailkelolainvestasi.html" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit user"> <i class="material-icons opacity-10">visibility</i> </a>
-                    <!-- Terserah mau pake button yg mana -->
-                  </td>
-                </tr>
+                @endforeach
               </tbody>
             </table>
             <nav aria-label="Page navigation example">

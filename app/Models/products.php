@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class products extends Model
 {
@@ -18,7 +19,10 @@ class products extends Model
         'name',
         'price',
         'stock',
-        'rating'
+        'rating',
+        'kategori',
+        'deskripsi',
+        'spesifikasi',
     ];
 
     protected $casts = [

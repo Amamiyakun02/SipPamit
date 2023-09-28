@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('invests', function (Blueprint $table) {
+        Schema::create('galeri_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('farm_id');
-            $table->decimal('profit_sharing', 3, 2)->nullable();
-            $table->integer('funding_target');
-            $table->integer('period')->nullable();
-
+            $table->string('gambar', 2048)->default('https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/team-2.jpg');
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+              ->references('id')
+              ->on('users')
+              ->onDelete('cascade');
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invests');
+        Schema::dropIfExists('galeri_user');
     }
 };

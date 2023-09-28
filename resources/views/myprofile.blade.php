@@ -67,12 +67,17 @@
           <div class="row gx-4 mb-2">
             <div class="col-auto">
               <div class="avatar avatar-xl position-relative">
+                @if ($user->profile_photo)
+                <img src="{{ asset('storage/'. $user->profile_photo) }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm" />
+                @else
                 <img src="../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm" />
+                @endif
+               
               </div>
             </div>
             <div class="col-auto my-auto">
               <div class="h-100">
-                <h5 class="mb-1">{{ auth()->user()->username }}</h5>
+                <h5 class="mb-1">{{ $user->username }}</h5>
               </div>
             </div>
           </div>
@@ -87,10 +92,10 @@
 
                     {{-- <h6 class="text-uppercase text-body text-xs font-weight-bolder">Account</h6> --}}
                     <ul class="list-group">
-                      <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Nama Lengkap :</strong> &nbsp; {{ auth()->user()->name }}</li>
-                      <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Username :</strong> &nbsp; {{ auth()->user()->username }}</li>
-                      <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email :</strong> &nbsp; {{ auth()->user()->email }}</li>
-                      <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">No HP :</strong> &nbsp; {{ auth()->user()->contact_phone }} </li>
+                      <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Nama Lengkap :</strong> &nbsp; {{ $user->name }}</li>
+                      <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Username :</strong> &nbsp; {{ $user->username }}</li>
+                      <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email :</strong> &nbsp; {{ $user->email }}</li>
+                      <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">No HP :</strong> &nbsp; {{ $user->contact_phone }} </li>
                       <!-- <li class="list-group-item border-0 ps-0 pb-0">
                         <strong class="text-dark text-sm">Social:</strong> &nbsp;
                         <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
@@ -219,8 +224,9 @@
                                     <h5 class="">Edit Profile</h5>
                                   </div>
                                   <div class="card-body">
-                                    <form action="/profile/update" method="POST">
+                                    <form action="/profile/update" method="POST" enctype="multipart/form-data">
                                         @csrf
+                                        <input type="hidden" class="form-control" name="id" value="{{$user->id}}">
                                         <h6 class="text-uppercase text-body text-xs font-weight-bolder">Nama :</h6>
                                         <div class="input-group input-group-outline my-3">
                                           <label class="form-label"></label>
@@ -244,13 +250,13 @@
                                         <h6 class="text-uppercase text-body text-xs font-weight-bolder">Deskripsi : </h6>
                                         <div class="input-group input-group-outline my-3">
                                             <label class="form-label"></label>
-                                            <textarea type="text" name="Deskripsi" class="form-control">{{$user->descript}}</textarea>
+                                            <textarea type="text" name="deskripsi" class="form-control">{{$user->descript}}</textarea>
                                             
                                         </div>
                                         <h6 class="text-uppercase text-body text-xs font-weight-bolder">Foto : </h6>
                                         <div class="input-group input-group-outline my-3">
                                             <label class="form-label"></label>
-                                            <input type="file" class="form-control" name="foto" value="{{$user->profile_photo_path}}">
+                                            <input type="file" class="form-control" name="profile_photo" value="{{$user->profile_photo_path}}">
                                         </div>
                                         
                                         {{-- <button type="submit" name="simpan" >Simpan</button> --}}
@@ -298,3 +304,4 @@
     <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
   </body>
 </html>
+

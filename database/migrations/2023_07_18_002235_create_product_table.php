@@ -20,6 +20,9 @@ return new class extends Migration
             $table->integer('stock')->nullable();
             $table->decimal('rating',3,1)->nullable();
             $table->integer('user_id')->nullable();
+            $table->enum('kategori', ['pupuk', 'alat', 'daging', 'obat'])->nullable();
+            $table->string('deskripsi', 320)->nullable(); 
+            $table->string('spesifikasi', 320)->nullable(); 
             $table->timestamps();
         });
     }

@@ -47,136 +47,96 @@
         </nav>
         <!-- End Navbar -->
 
-        <!-- Modal Tambah Peternak -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Tambah Akun Peternak</h5>
-                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-outline my-3">
-                                        <label class="form-label">Nama Peternakan</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-outline my-3">
-                                        <label class="form-label">No HP</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-outline my-3">
-                                        <label class="form-label">Alamat</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-outline my-3">
-                                        <label for="formFile" class="form-label">Pilih Foto Profil</label>
-                                        <input class="form-control" type="file" id="formFile" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-outline my-3">
-                                        <label class="form-label">Pemilik</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn bg-gradient-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Modal Tambah Peternak -->
+        @include('modals/modalTambahPembeli')
         <div class="container-fluid py-4">
             <!-- Table -->
             <div class="card">
                 <div class="table-responsive">
                     <table class="table align-items-center mb-0">
                         <thead>
-                            <tr>
-                                <th
-                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-middle text-center">
-                                    No</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Peternakan
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alamat
-                                </th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Pemilik</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Aksi</th>
-                                <th class="text-secondary opacity-7"></th>
-                            </tr>
+                          <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-middle text-center">No</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alamat</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nomor HP</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                            <th class="text-secondary opacity-7"></th>
+                          </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
-                                <tr>
-                                    <td class="align-middle text-center">{{ $loop->iteration }}</td>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/team-2.jpg"
-                                                    class="avatar avatar-sm me-3" />
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-xs">PT WIBU STRESS SEJAHTERA</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Fontaine</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <p class="text-xs font-weight-bold mb-0">Bang Rusdi</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <a href="/detailkelolapeternak"
-                                            class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                                            data-original-title="Edit user"> <i
-                                                class="material-icons opacity-10">visibility</i> </a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach($pembeli as $p)
+                          <tr>
+                            <td class="align-middle text-center">{{ $loop->iteration }}</td>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  <img src="{{ asset('storage/' . $p->profile_photo) }}" class="avatar avatar-sm me-3" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                  <h6 class="mb-0 text-xs">{{$p->name}}</h6>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <p class="text-xs font-weight-bold mb-0">{{$p->address}}</p>
+                            </td>
+
+                            <td class="align-middle text-center text-sm">
+                              <p class="text-xs font-weight-bold mb-0">{{$p->contact_phone}}</p>
+                            </td>
+
+                            <td class="align-middle text-center text-sm">
+                                <p class="text-xs font-weight-bold mb-0">{{$p->email}}</p>
+                              </td>
+
+                            <td class="align-middle text-center">
+                              {{-- <a href="{{ route('detailpembeli', ['id' => $p->id]) }}" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit user"> <i class="material-icons opacity-10">visibility</i> </a> --}}
+                            </td>
+                            <td>
+                                <form action="/kelolapembeli/{{$p->id}}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-primary" value="delete">Delete</button>
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editPassword"><i class="material-icons opacity-10">key</i></button>
+                  
+                                </form>
+                            </td>
+                          </tr>
+                          @endforeach
                         </tbody>
-                    </table>
-                    <nav aria-label="Page navigation example">
+                      </table>
+                      @include('modals/modalEditPasswordPembeli')
+                      <div class="custom-pagination">
                         <ul class="pagination justify-content-end">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="javascript:;" tabindex="-1">
-                                    <span class="material-icons"> keyboard_arrow_left </span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="javascript:;">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="javascript:;">2</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:;">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="javascript:;">
-                                    <span class="material-icons"> keyboard_arrow_right </span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
+                            @if ($pembeli->currentPage() > 1)
+                            
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $pembeli->previousPageUrl() }}">
+                                        <span class="material-icons">keyboard_arrow_left</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                             
+                            @endif
+                
+                            @for ($i = 1; $i <= $pembeli->lastPage(); $i++)
+                                <li class="page-item {{ $i == $pembeli->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $pembeli->url($i) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
+                
+                            @if ($pembeli->hasMorePages())
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $pembeli->nextPageUrl() }}">
+                                        <span class="material-icons">keyboard_arrow_right</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
-                    </nav>
+                    </div>
+
                 </div>
             </div>
             <!-- End Table -->

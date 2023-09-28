@@ -194,7 +194,7 @@
                   <input type="text" id="username" name="username" placeholder="nama akun pengguna" />
                 </div>
                 <div class="group-input">
-                  <input type="hidden" id="role" name="role" value="user" />
+                  <input type="hidden" id="role" name="role" value="pembeli" />
                 </div>
                 <div class="group-input">
                   <label for="password">Password</label>

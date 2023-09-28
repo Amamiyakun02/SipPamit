@@ -31,64 +31,8 @@
       </nav>
       <!-- End Navbar -->
 
-      <!-- Modal Tambah Peternak -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Tambah Akun Peternak</h5>
-              <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                      <label class="form-label">Nama Admin</label>
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                      <label class="form-label">No HP</label>
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                      <label class="form-label">Alamat</label>
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                      <label for="formFile" class="form-label">Pilih Foto Profil</label>
-                      <input class="form-control" type="file" id="formFile" />
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                      <label class="form-label">Pemilik</label>
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn bg-gradient-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Modal Tambah Peternak -->
+      @include('modals/modalTambahAdmin')
+
       <div class="container-fluid py-4">
         <!-- Table -->
         <div class="card">
@@ -97,82 +41,90 @@
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-middle text-center">No</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Profil</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No HP</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                   <th class="text-secondary opacity-7"></th>
                 </tr>
               </thead>
               <tbody>
+                @foreach($admin as $a)
                 <tr>
-                  <td class="align-middle text-center">1.</td>
+                  <td class="align-middle text-center">{{ $loop->iteration }}</td>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div>
-                        <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/team-2.jpg" class="avatar avatar-sm me-3" />
+                        <img src="{{ asset('storage/' . $a->profile_photo) }}" class="avatar avatar-sm me-3" />
                       </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-xs">Keqing WAngy Wangy Wangy</h6>
-                      </div>
-                    </div>
+                      
                   </td>
                   <td>
-                    <span class="badge badge-pill badge-md bg-gradient-success">Online</span>
+                    <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-xs">{{$a->name}}</h6>
+                  </div>
+                </div>
+              </td>
+                  <td class="align-middle text-center text-sm">
+                    <p class="text-xs font-weight-bold mb-0">{{$a->address}}</p>
                   </td>
                   <td class="align-middle text-center text-sm">
-                    <p class="text-xs font-weight-bold mb-0">098xxxx</p>
+                    <p class="text-xs font-weight-bold mb-0">{{$a->contact_phone}}</p>
                   </td>
                   <td class="align-middle text-center">
-                    <button type="button" class="btn btn-outline-danger"><i class="material-icons opacity-10">delete</i></button>
+                    <form action="/kelolaadmin/{{$a->id}}" method="POST">
+                      @csrf
+                      @method('delete')
+                      <button type="submit" class="btn btn-outline-primary" value="delete"><i class="material-icons opacity-10">delete</i></button>
+                
+                  </form>
+                  <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editModal"><i class="material-icons opacity-10">edit</i></button>
+                  <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editPassword"><i class="material-icons opacity-10">key</i></button>
+                  
+
+
                   </td>
+                   
+                  
                 </tr>
-                <tr>
-                  <td class="align-middle text-center">2.</td>
-                  <td>
-                    <div class="d-flex px-2 py-1">
-                      <div>
-                        <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/team-2.jpg" class="avatar avatar-sm me-3" />
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-xs">PT SUNGUT LELE JOMOK</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge badge-pill badge-md bg-gradient-danger">Offline</span>
-                  </td>
-                  <td class="align-middle text-center text-sm">
-                    <p class="text-xs font-weight-bold mb-0">817272623</p>
-                  </td>
-                  <td class="align-middle text-center">
-                    <button class="btn btn-icon btn-2 btn-primary" type="button">
-                      <span class="btn-inner--icon"><i class="material-icons opacity-10">delete</i></span>
-                    </button>
-                    <!-- Terserah mau pake button yg mana -->
-                  </td>
-                </tr>
+
+                
               </tbody>
+             @include('modals/modalEditAdmin')
+             @include('modals/modalEditPasswordAdmin')
+@endforeach
             </table>
-            <nav aria-label="Page navigation example">
+
+
+
+            <div class="custom-pagination">
               <ul class="pagination justify-content-end">
-                <li class="page-item disabled">
-                  <a class="page-link" href="javascript:;" tabindex="-1">
-                    <span class="material-icons"> keyboard_arrow_left </span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="javascript:;">1</a></li>
-                <li class="page-item active"><a class="page-link" href="javascript:;">2</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:;">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="javascript:;">
-                    <span class="material-icons"> keyboard_arrow_right </span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+                  @if ($admin->currentPage() > 1)
+                  
+                      <li class="page-item">
+                          <a class="page-link" href="{{ $admin->previousPageUrl() }}">
+                              <span class="material-icons">keyboard_arrow_left</span>
+                              <span class="sr-only">Previous</span>
+                          </a>
+                      </li>
+                   
+                  @endif
+      
+                  @for ($i = 1; $i <= $admin->lastPage(); $i++)
+                      <li class="page-item {{ $i == $admin->currentPage() ? 'active' : '' }}">
+                          <a class="page-link" href="{{ $admin->url($i) }}">{{ $i }}</a>
+                      </li>
+                  @endfor
+      
+                  @if ($admin->hasMorePages())
+                      <li class="page-item">
+                          <a class="page-link" href="{{ $admin->nextPageUrl() }}">
+                              <span class="material-icons">keyboard_arrow_right</span>
+                              <span class="sr-only">Next</span>
+                          </a>
+                      </li>
+                  @endif
           </div>
         </div>
         <!-- End Table -->

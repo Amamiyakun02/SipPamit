@@ -20,7 +20,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'nama_peternakan',
         'username',
         'email',
         'address',
@@ -39,7 +38,7 @@ class User extends Authenticatable
         'password',
         'remember_token'
     ];
-        /**
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
@@ -49,7 +48,7 @@ class User extends Authenticatable
         'updated_at' => 'datetime:Y-m-d H:m:s'
     ];
 
-        /**
+    /**
      * The accessors to append to the model's array form.
      *
      * @var array<int, string>
@@ -58,16 +57,23 @@ class User extends Authenticatable
     //     'profile_photo_path',    
     // ];
 
-    public function isAdmin(){
+    public function isAdmin()
+    {
         return $this->role = 'admin';
     }
 
-    public function isPeternak(){
+    public function isPeternak()
+    {
         return $this->role = 'peternak';
     }
 
     public function product(): HasMany
     {
-        return $this->hasMany(products::class, 'user_id','id');
+        return $this->hasMany(products::class, 'user_id', 'id');
+    }
+
+    public function farm(): HasMany
+    {
+        return $this->hasMany(farm::class, 'user_id', 'id');
     }
 }

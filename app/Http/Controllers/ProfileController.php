@@ -30,11 +30,26 @@ class ProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
-        $user = User::find($request->id);
-        $user->update($request->except(['_token', 'submit']));
-        return redirect('/profile');  
-    }
 
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'username' => 'required',
+            'email'  => 'email:dns',
+            'profile_photo'   =>'image|file|max:2048',
+            'deskripsi' => '',
+            'password_baru' => ''
+        ]);
+
+        if($request->file('profile_photo')){
+           $validatedData['profile_photo'] = $request->file('profile_photo')->store('public/gambar-user');
+        }
+        
+        $user = User::find($request->id);
+        $user->update($validatedData);
+
+        return redirect('/profile');
+    }   
 }
+

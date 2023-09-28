@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('invests', function (Blueprint $table) {
+        Schema::create('farms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('farm_id');
-            $table->decimal('profit_sharing', 3, 2)->nullable();
-            $table->integer('funding_target');
-            $table->integer('period')->nullable();
-
+            $table->foreignId('user_id');
+            $table->string('nama_peternakan');
+            $table->string('foto_peternakan')->default('1.jpg');
+            $table->integer('kapasitas');
+            $table->integer('ukuran');
+            $table->year('sejak');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invests');
+        Schema::dropIfExists('farms');
     }
 };

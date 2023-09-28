@@ -4,24 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
-
-class invest extends Model
+class Farm extends Model
 {
     use HasFactory;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'profit_sharing',
-        'funding_target',
-        'period',
-        'farm_id',
-    ];
 
     protected $guards = [
         'id',
@@ -32,8 +19,13 @@ class invest extends Model
         'updated_at' => 'datetime:Y-m-d H:m:s'
     ];
 
-    public function farm()
+    public function user()
     {
-        return $this->belongsTo(farm::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function invest(): HasMany
+    {
+        return $this->hasMany(products::class, 'farm_id', 'id');
     }
 }

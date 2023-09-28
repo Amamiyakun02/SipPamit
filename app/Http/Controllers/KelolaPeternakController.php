@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\products;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class KelolaPeternakController extends Controller
 {
@@ -47,6 +48,7 @@ class KelolaPeternakController extends Controller
     public function update($id, Request $request)
     {
         $data = $request->except('_token');
+        $data['password'] = Hash::make($data['password']);
         $peternak = User::find($id);
         // Handle the profile photo upload
         if ($request->hasFile('profile_photo')) {

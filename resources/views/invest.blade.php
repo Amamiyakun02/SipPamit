@@ -39,9 +39,60 @@
                   </div>
                 </div>
               </div>
+
+
               <div class="product-list">
                 <div class="row">
+                  @foreach ($invests as $invest)
                   <div class="col-lg-3 col-md-4">
+                    <div class="card custom-card">
+                      <div class="square-image">
+                        <img
+                          class="square-image"
+                          src="\assets\img\shop\{{ $invest->farm->foto_peternakan }}"
+                          alt=""
+                        />
+                      </div>
+                      <br />
+                      <div class="card-body">
+                        <h5 class="card-title"><strong>{{ $invest->farm->nama_peternakan }}</strong></h5>
+                        <ul class="list-unstyled">
+                          <li><strong>Kapasitas Ayam:</strong> {{ $invest->farm->kapasitas }} ekor</li>
+                          <li><strong>Ukuran Kandang:</strong> {{ $invest->farm->ukuran}}m persegi</li>
+                          <li><strong>Tahun Beroperasi:</strong> {{ $invest->farm->sejak}} </li> 
+                        </ul>
+                        <div class="progress-wrapper">
+                          <div class="progress">
+                            <div
+                              class="progress-bar"
+                              role="progressbar"
+                              style="width: 0%"
+                              aria-valuenow="0"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            >
+                              0%
+                            </div>
+                          </div>
+                          <div class="progress-label">
+                            <span id="current-value">Rp 0,00</span> /
+                            <span id="max-value">Rp 30.000.000,00</span>
+                          </div>
+                        </div>
+                        <br />
+                        <div class="btn-wrapper">
+                          <div>
+                            <a href="/invest-now" class="primary-btn pd-cart"
+                              >Invest Now</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  @endforeach
+
+                  {{-- <div class="col-lg-3 col-md-4">
                     <div class="card custom-card">
                       <div class="square-image">
                         <img
@@ -87,54 +138,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-lg-3 col-md-4">
-                    <div class="card custom-card">
-                      <div class="square-image">
-                        <img
-                          class="square-image"
-                          src="img/sipamit logo.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <br />
-                      <div class="card-body">
-                        <h5 class="card-title"><strong>Jali's Farmer</strong></h5>
-                        <ul class="list-unstyled">
-                          <li><strong>Kapasitas Ayam:</strong> 300 ekor</li>
-                          <li><strong>Ukuran Kandang:</strong> 20 m persegi</li>
-                          <li><strong>Tahun Beroperasi:</strong> 2003</li>
-                        </ul>
-                        <div class="progress-wrapper">
-                          <div class="progress">
-                            <div
-                              class="progress-bar"
-                              role="progressbar"
-                              style="width: 0%"
-                              aria-valuenow="0"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            >
-                              0%
-                            </div>
-                          </div>
-                          <div class="progress-label">
-                            <span id="current-value">Rp 0,00</span> /
-                            <span id="max-value">Rp 30.000.000,00</span>
-                          </div>
-                        </div>
-  
-                        <br />
-                        <div class="btn-wrapper">
-                          <div>
-                            <a href="/invest-now" class="primary-btn pd-cart"
-                              >Invest Now</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  </div> --}}
                   <!-- Tambahkan kartu-kartu lain di sini -->
                 </div>
               </div>
