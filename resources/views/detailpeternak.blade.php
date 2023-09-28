@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     <div class="d-grid gap-2">
-                      <input type="submit" class="btn btn-primary mb-3 btn-lg" id="submit" name="submit" value="Ubah Profil"></input>
+                      <input type="submit" class="btn btn-primary mb-3 btn-lg" id="submit" name="submit" value="Ubah Profil">
                     </div>
                     <hr>
                     <!-- Disini DIisi apaaan njer -->

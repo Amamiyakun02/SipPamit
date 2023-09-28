@@ -25,14 +25,13 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form id="editdeskripsiForm">
+                        {{-- mulai editingnya --}}
+                        <form id="perkenalanEdit" method="POST" action="{{ url('edit', ['id' => $product->id]) }}">
+                        @csrf
+                        @method('PUT') <!-- Untuk metode PUT -->
                         <div class="mb-3">
-                          <label for="perkenalan">Deskripsi</label>
-                          <textarea
-                            class="form-control"
-                            id="perkenalanEdit"
-                            name="perkenalanEdit"
-                          ></textarea>
+                            <label for="deskripsi">Deskripsi</label>
+                            <textarea class="form-control" id="perkenalanEdit" name="deskripsi">{{ old('deskripsi', $product->deskripsi) }}</textarea>
                         </div>
                         <div class="mb-3">
                           <label for="img">Gambar</label>
@@ -91,16 +90,14 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form id="editSpesifikasiForm">
-                        <div class="mb-3">
-                          <label for="tentang">Spesifikasi</label>
-                          <textarea
-                            class="form-control"
-                            id="spekEdit"
-                            name="spekEdit"
-                          ></textarea>
-                        </div>
-                      </form>
+                        <form id="editSpesifikasiForm" method="POST" action="{{ url('edit', ['id' => $product->id]) }}">
+                            @csrf
+                            @method('PUT') <!-- Untuk metode PUT -->
+                            <div class="mb-3">
+                                <label for="spesifikasi">spesifikasi</label>
+                                <textarea class="form-control" id="spekEdit" name="spesifikasi">{{ old('spesifikasi', $product->spesifikasi) }}</textarea>
+                            </div>
+                      
                     </div>
                     <div class="modal-footer">
                       <button
@@ -120,6 +117,7 @@
                     </div>
                   </div>
                 </div>
+            </form>
               </div>
 
               <!-- end of modal Spesifikasi-->

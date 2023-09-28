@@ -79,7 +79,7 @@
                       <span>(5)</span>
                     </div>
                     <div class="pd-desc">
-                      <h4>{{ $product->price }}</h4>
+                      <h4>Rp {{ $product->price }},00</h4>
                     </div>
                     <div class="pd-color">
                       <h6>STOK : {{ $product->stock}}</h6>
@@ -114,17 +114,18 @@
                       <div class="sc-item">
                         <input type="radio" id="xl-size" />
                         <label for="xl-size">xs</label>
-                      </div>
-                    </div> -->
+                      </div> -->
+                      <br>
+                    </div>
                     <div class="quantity">
                       <div class="pro-qty">
                         <input type="text" value="1" />
                       </div>
-                      <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                      <a href="#" class="primary-btn pd-cart">Buy It Now</a>
                     </div>
                     <ul class="pd-tags">
                       <li>
-                        <span>KATEGORI</span>: {{ $product->kategori }}
+                        <span>KATEGORI : {{ $product->kategori }}</span>
                       </li>
                       <!-- <li><span>TAGS</span>: Clothing, T-shirt, Woman</li> -->
                     </ul>

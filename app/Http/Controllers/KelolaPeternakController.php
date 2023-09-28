@@ -13,7 +13,17 @@ class KelolaPeternakController extends Controller
     {
         $peternak = User::paginate(1);
         return view('mykelolapeternak', compact(['peternak']));
+<<<<<<< HEAD
 
+=======
+    }
+    
+    public function detail($id){
+        $peternak = User::find($id);
+        $galeri = galeri::where('user_id', $id)->get();
+        $investasi = invest::where('user_id', $id)->paginate(1);
+        return view('mydetailkelolauser', compact(['peternak','galeri','investasi']));
+>>>>>>> c957a01cf6079d3e144070157290286bda7ca6c0
     }
 
     public function detail($id)

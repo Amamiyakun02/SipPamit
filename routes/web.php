@@ -9,17 +9,18 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\galeriController;
 use App\Http\Controllers\InvestController;
 use App\Http\Controllers\PembeliController;
-use App\Http\Controllers\PeternakController;
-use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PeternakController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvestNowController;
 use App\Http\Controllers\KelolaUserController;
 use App\Http\Controllers\KelolaAdminController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\KelolaPembeliController;
 use App\Http\Controllers\KelolaPeternakController;
 use App\Http\Controllers\KelolaInvestasiController;
+use App\Http\Controllers\kelolaInvestasiPeternakController;
 
 
 /*
@@ -56,14 +57,15 @@ Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/product', [ProductController::class, 'index']);
 
 // Rute untuk mengedit produk dengan menggunakan metode PUT
-Route::put('/product/{id}', [ProductController::class, 'update'])->middleware('auth');
+Route::put('/product/{id}', [ProductController::class, 'update_product'])->middleware('auth');
 
 // Rute untuk menampilkan halaman edit produk
-Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->middleware('auth');
+Route::get('/product/{id}', [ProductController::class, 'edit'])->middleware('auth');
 
-// Rute khusus untuk menampilkan produk dengan ID 1
-Route::get('/product/3', [ProductController::class, 'showProduct2']);
-
+//Mencoba saja
+// Rute khusus untuk menampilkan produk dengan ID 1 
+Route::get('/product/1', [ProductController::class, 'showProduct2']);
+//masih area produk ------------------------------------------------------
 
 
 //Route Invest
@@ -125,6 +127,12 @@ Route::post('/kelolagaleri/{id}/store', [galeriController::class, 'store']);
 
 //Route hapus Kelola galeri
 Route::delete('/kelolagaleri/{id}/{user_id}', [galeriController::class, 'destroy']);
+
+//Route delete investasi detail
+Route::delete('/kelolainvestasi/{user_id}/{id}', [kelolaInvestasiPeternakController::class, 'destroy']);
+
+//Route store investasi
+Route::post('/kelolainvestasi/{id}', [kelolaInvestasiPeternakController::class, 'store']);
 
 //Route Registrasi 
 Route::get("/regis", function () {

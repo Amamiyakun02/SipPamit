@@ -20,7 +20,7 @@ class ProductController extends Controller
     }
         public function showProduct2()
     {
-        $product = Products::find(3); // Mengambil produk dengan ID 2
+        $product = Products::find(1); // Mengambil produk dengan ID 3
         return view('shop_product', ['product' => $product]);
     }
 
